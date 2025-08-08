@@ -1,0 +1,12 @@
+{
+	"servers": {
+		"mastercard": {
+			"type": "stdio",
+			"command": "node",
+			"args": [
+				"/Users/sudheerghanathe/Code/mcp/server.mjs"
+			]
+		}
+	},
+	"inputs": []
+}
