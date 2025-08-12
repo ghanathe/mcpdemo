@@ -28,6 +28,7 @@
 	</scm>
 	<properties>
 		<java.version>17</java.version>
+		<mastercard.sdk.version>1.0.0</mastercard.sdk.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -55,6 +56,11 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.5.14</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mastercard.developer</groupId>
+			<artifactId>oauth1-signer</artifactId>
+			<version>1.5.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>

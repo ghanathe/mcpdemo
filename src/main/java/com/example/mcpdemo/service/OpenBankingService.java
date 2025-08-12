@@ -25,6 +25,7 @@ public class OpenBankingService {
     private final OpenBankingConfig config;
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
+    private final CurrencyConversionService currencyConversionService;
     
     private String accessToken;
     private long tokenExpiry;
@@ -164,6 +165,31 @@ public class OpenBankingService {
                 account.setStatus(accountNode.get("status").asText());
                 account.setCurrency(accountNode.get("currency").asText());
                 account.setBalanceDate(accountNode.get("balanceDate").asLong());
+                
+                // Convert balance to USD if not already in USD
+                // Convert to USD if not already in USD
+                if (!"USD".equals(account.getCurrency())) {
+                    double convertedBalance = currencyConversionService.convertAmount(
+                        account.getBalance(),
+                        account.getCurrency(),
+                        "INR"  // Convert to INR for display
+                    );
+                    account.setConvertedBalance(convertedBalance);
+                } else {
+                    account.setConvertedBalance(account.getBalance());
+                }
+                
+                // Convert to INR
+                if (!"INR".equals(account.getCurrency())) {
+                    double inrBalance = currencyConversionService.convertToINR(
+                        account.getBalance(),
+                        account.getCurrency()
+                    );
+                    account.setInrBalance(inrBalance);
+                } else {
+                    account.setInrBalance(account.getBalance());
+                }
+                
                 accounts.add(account);
             }
         }

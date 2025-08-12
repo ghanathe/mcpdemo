@@ -22,6 +22,8 @@ public class Account {
     private String status;
     private Long balanceDate;
     private String currency;
+    private Double convertedBalance;  // USD balance
+    private Double inrBalance;       // INR balance
     
     @ManyToOne
     private Customer customer;
